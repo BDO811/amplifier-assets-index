@@ -9,6 +9,8 @@
     --rule: #000000;
     --hairline: #D9D2C3;
     --card: #FFFFFF;
+    --accent: #A85C22;
+    --accent-soft: #FFC163;
   }
   * { box-sizing: border-box; }
   html, body {
@@ -20,7 +22,19 @@
     -webkit-font-smoothing: antialiased;
   }
   a { color: var(--ink); }
+  .bg-media {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    z-index: 0;
+    pointer-events: none;
+  }
   .wrap {
+    position: relative;
+    z-index: 1;
     max-width: 920px;
     margin: 0 auto;
     padding: 0 24px 120px;
@@ -45,7 +59,7 @@
     font-family: "Courier New", monospace;
     font-size: 9pt;
     letter-spacing: 0.1em;
-    color: var(--ink-2);
+    color: var(--accent);
     text-transform: uppercase;
     margin: 0 0 10px;
   }
@@ -101,8 +115,11 @@
   }
   .section-count {
     font-family: "Courier New", monospace;
-    font-size: 9pt;
-    color: var(--ink-mute);
+    font-size: 8.5pt;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 3px 9px;
+    border-radius: 3px;
     white-space: nowrap;
   }
   p.section-note {
@@ -143,11 +160,12 @@
     font-size: 9pt;
     letter-spacing: 0.02em;
     text-decoration: none;
-    border-bottom: 1px solid var(--ink);
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
     padding-bottom: 1px;
     white-space: nowrap;
   }
-  .asset-link:hover { opacity: 0.6; }
+  .asset-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
   p.asset-desc {
     font-family: Georgia, serif;
     font-size: 10.5pt;
@@ -190,6 +208,10 @@
     .asset-head { flex-direction: column; align-items: flex-start; gap: 4px; }
   }
 </style>
+
+<video class="bg-media" autoplay muted loop playsinline poster="bg-poster.jpg">
+  <source src="bg-loop.mp4" type="video/mp4">
+</video>
 
 <div class="wrap">
   <div class="topbar">
