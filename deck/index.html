@@ -22,7 +22,7 @@
   }
   a { color: var(--ink); }
   .wrap {
-    max-width: 920px;
+    max-width: 960px;
     margin: 0 auto;
     padding: 0 24px 100px;
   }
@@ -53,13 +53,13 @@
   h1.hero {
     font-family: Georgia, serif;
     font-weight: bold;
-    font-size: 30pt;
+    font-size: 28pt;
     line-height: 1.15;
     color: var(--ink);
-    margin: 0 0 18px;
+    margin: 0 0 16px;
   }
   p.lede {
-    font-size: 13pt;
+    font-size: 12.5pt;
     line-height: 1.55;
     color: var(--ink-body);
     max-width: 68ch;
@@ -99,30 +99,76 @@
     border-top: 2px solid var(--rule);
     margin: 28px 0 32px;
   }
-  .slides {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-  .slide {
+
+  .viewer {
     border: 1px solid var(--hairline);
     background: #000;
   }
-  .slide img {
+  .stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    min-height: 220px;
+    touch-action: pan-y;
+  }
+  .stage img {
     display: block;
     width: 100%;
     height: auto;
+    max-height: 72vh;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
   }
-  .slide-num {
+  .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(240, 234, 224, 0.85);
+    color: var(--ink);
+    font-family: Georgia, serif;
+    font-size: 20pt;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-btn:hover { background: var(--accent-soft); }
+  .nav-btn.is-disabled { opacity: 0.25; pointer-events: none; }
+  #prev-btn { left: 12px; }
+  #next-btn { right: 12px; }
+
+  .viewer-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: var(--paper);
+    border-top: 1px solid var(--hairline);
+  }
+  #slide-counter {
     font-family: "Courier New", monospace;
-    font-size: 8.5pt;
-    letter-spacing: 0.06em;
+    font-size: 9pt;
+    letter-spacing: 0.08em;
     color: var(--ink-mute);
     text-transform: uppercase;
-    margin: 0 0 6px;
   }
+  .hint {
+    font-family: "Courier New", monospace;
+    font-size: 8.5pt;
+    color: var(--ink-mute);
+    letter-spacing: 0.04em;
+  }
+
   footer.page-footer {
-    margin-top: 48px;
+    margin-top: 40px;
     padding-top: 14px;
     border-top: 2px solid var(--rule);
     display: flex;
@@ -134,7 +180,8 @@
     text-transform: uppercase;
   }
   @media (max-width: 640px) {
-    h1.hero { font-size: 22pt; }
+    h1.hero { font-size: 21pt; }
+    .nav-btn { width: 38px; height: 38px; font-size: 16pt; }
   }
 </style>
 
@@ -160,8 +207,8 @@
 
   <p class="eyebrow">Amplifier Health &middot; Product Deck</p>
   <h1 class="hero">Voice intelligence meets human intuition.</h1>
-  <p class="lede">The full product pitch deck: the thesis, the acoustic model, validated conditions,
-  wellness metrics, and where the platform is headed. Scroll through below, or download the complete
+  <p class="lede">The full product pitch deck: the thesis, the acoustic model, validated conditions, and
+  wellness metrics. Use the arrows (or the left/right keys) to click through, or download the complete
   16-page PDF.</p>
 
   <div class="download-row">
@@ -171,27 +218,16 @@
 
   <hr class="rule" />
 
-  <div class="slides">
-    <div class="slide"><p class="slide-num">01 / 16</p><img src="slides/slide-01.jpg" alt="Slide 1" loading="lazy"></div>
-    <div class="slide"><p class="slide-num">02 / 16</p><img src="slides/slide-02.jpg" alt="Slide 2" loading="lazy"></div>
-    <div class="slide"><p class="slide-num">03 / 16</p><img src="slides/slide-03.jpg" alt="Slide 3" loading="lazy"></div>
-    <div class="slide"><p class="slide-num">04 / 16</p><img src="slides/slide-04.jpg" alt="Slide 4" loading="lazy"></div>
-    <div class="slide"><p class="slide-num">05 / 16</p><img src="slides/slide-05.jpg" alt="Slide 5" loading="lazy"></div>
-    <div class="slide"><p class="slide-num">06 / 16</p><img src="slides/slide-06.jpg" alt="Slide 6" loading="lazy"></div>
-    <div class="slide"><p class="slide-num">07 / 16</p><img src="slides/slide-07.jpg" alt="Slide 7" loading="lazy"></div>
-    <div class="slide"><p class="slide-num">08 / 16</p><img src="slides/slide-08.jpg" alt="Slide 8" loading="lazy"></div>
-    <div class="slide"><p class="slide-num">09 / 16</p><img src="slides/slide-09.jpg" alt="Slide 9" loading="lazy"></div>
-    <div class="slide"><p class="slide-num">10 / 16</p><img src="slides/slide-10.jpg" alt="Slide 10" loading="lazy"></div>
-    <div class="slide"><p class="slide-num">11 / 16</p><img src="slides/slide-11.jpg" alt="Slide 11" loading="lazy"></div>
-    <div class="slide"><p class="slide-num">12 / 16</p><img src="slides/slide-12.jpg" alt="Slide 12" loading="lazy"></div>
-    <div class="slide"><p class="slide-num">13 / 16</p><img src="slides/slide-13.jpg" alt="Slide 13" loading="lazy"></div>
-    <div class="slide"><p class="slide-num">14 / 16</p><img src="slides/slide-14.jpg" alt="Slide 14" loading="lazy"></div>
-    <div class="slide"><p class="slide-num">15 / 16</p><img src="slides/slide-15.jpg" alt="Slide 15" loading="lazy"></div>
-    <div class="slide"><p class="slide-num">16 / 16</p><img src="slides/slide-16.jpg" alt="Slide 16" loading="lazy"></div>
-  </div>
-
-  <div class="download-row" style="margin-top: 32px;">
-    <a class="download-link" href="Amplifier-Health-Product-Deck.pdf" target="_blank" rel="noopener">Download full deck (PDF) &#8599;</a>
+  <div class="viewer">
+    <div class="stage" id="stage">
+      <button class="nav-btn" id="prev-btn" aria-label="Previous slide">&#8249;</button>
+      <img id="slide-img" src="slides/slide-01.jpg" alt="Slide 1 of 16">
+      <button class="nav-btn" id="next-btn" aria-label="Next slide">&#8250;</button>
+    </div>
+    <div class="viewer-foot">
+      <span id="slide-counter">1 / 16</span>
+      <span class="hint">Use &#8592; / &#8594; or swipe to navigate</span>
+    </div>
   </div>
 
   <footer class="page-footer">
@@ -199,3 +235,9 @@
     <span>assets.amplifierhealth.com/deck</span>
   </footer>
 </div>
+
+<script>
+  window.DECK_TOTAL_SLIDES = 16;
+  window.DECK_SLIDE_PREFIX = "slides/slide-";
+</script>
+<script src="../deck-viewer.js"></script>
