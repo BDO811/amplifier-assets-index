@@ -10,9 +10,25 @@
   var nextBtn = document.getElementById("next-btn");
   var stage = document.getElementById("stage");
 
+  // Preload every slide into the browser cache up front so clicking next/prev
+  // swaps an already-decoded image instead of firing a fresh network request
+  // and waiting on it. This is what made click-through feel slow.
+  var urls = [];
+  for (var n = 1; n <= total; n++) urls.push(prefix + pad(n) + ".jpg");
+  var preloaded = new Array(total + 1).fill(false);
+  urls.forEach(function (url, idx) {
+    var n = idx + 1;
+    var pre = new Image();
+    pre.onload = function () { preloaded[n] = true; };
+    pre.src = url;
+  });
+
   function show(n) {
     current = Math.max(1, Math.min(total, n));
-    img.src = prefix + pad(current) + ".jpg";
+    var url = prefix + pad(current) + ".jpg";
+    if (img.src.indexOf(url) === -1) {
+      img.src = url;
+    }
     img.alt = "Slide " + current + " of " + total;
     counter.textContent = current + " / " + total;
     prevBtn.classList.toggle("is-disabled", current === 1);
